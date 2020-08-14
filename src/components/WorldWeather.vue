@@ -1,7 +1,7 @@
 <template>
 
   <div class="container">
-    <h3>NETATMO weather map widget</h3>
+    <h3><i class="fas fa-sun"></i> NETATMO weather map widget <i class="fas fa-cloud"></i></h3>
 
     <!--Accordion wrapper-->
     <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
@@ -24,3 +24,20 @@ export default {
   }
 }
 </script>
+
+<style>
+
+  .accordion {
+    margin: auto;
+    width: 40vw;
+  }
+
+  h3 {
+    margin-bottom: 5rem;
+  }
+
+  i {
+    color: #007bff;
+  }
+
+</style>
