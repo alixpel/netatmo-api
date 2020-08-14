@@ -16,8 +16,8 @@
         <!-- <tr v-for="city in cities" v-bind:key="weather.city">
           <th scope="row">Nom</th>
           <td>{{weather.temp}} °C</td>
-          <td>{{weather.rain}}</td>
-          <td>{{weather.wind}}</td>
+          <td>{{weather.rain}} %</td>
+          <td>{{weather.wind}} kph</td>
         </tr> -->
       </tbody>
     </table>
@@ -33,7 +33,11 @@
       <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
         aria-controls="collapseOne1">
         <h5 class="mb-0">
-          Paris<i class="fas fa-angle-down rotate-icon"></i>
+          {{city}}
+          <i class="fas fa-angle-down rotate-icon"></i>
+
+
+
         </h5>
       </a>
     </div>
@@ -51,7 +55,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>°C</td>
+              <td>{{ temperature }}°C</td>
               <td> cm</td>
               <td> km/h</td>
             </tr>
@@ -71,7 +75,7 @@
       <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
         aria-expanded="false" aria-controls="collapseTwo2">
         <h5 class="mb-0">
-          Berlin<i class="fas fa-angle-down rotate-icon"></i>
+          Berlin <i class="fas fa-angle-down rotate-icon"></i>
         </h5>
       </a>
     </div>
@@ -94,7 +98,7 @@
       <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
         aria-expanded="false" aria-controls="collapseThree3">
         <h5 class="mb-0">
-          New-York<i class="fas fa-angle-down rotate-icon"></i>
+          New-York <i class="fas fa-angle-down rotate-icon"></i>
         </h5>
       </a>
     </div>
@@ -117,7 +121,7 @@
       <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseFour4"
         aria-expanded="false" aria-controls="collapseFour4">
         <h5 class="mb-0">
-          Bogota<i class="fas fa-angle-down rotate-icon"></i>
+          Bogota <i class="fas fa-angle-down rotate-icon"></i>
         </h5>
       </a>
     </div>
@@ -143,19 +147,31 @@
 <script>
 
   import axios from 'axios';
-
   export default {
     name: 'Weather',
-    data() {
+
+    data: function() {
       return {
-        users: null,
-      };
+        city: "Paris",
+        temperature: null
+      }
     },
+
     created: function() {
+
+      let config = {
+        headers: {
+          Authorization: "Bearer 5f3407b3cd38442521269595|79060295c6b1f231d206181589ee164e",
+        }
+      }
+
       axios
-        .get('https://jsonxxxxxx')
+        .get('https://api.netatmo.com/api/getpublicdata?lat_ne=48.86471476180278&lon_ne=2.373046875&lat_sw=48.83579746243092&lon_sw=2.3291015625&filter=false', config)
         .then(res => {
-          this.xxxxx = res.data;
+          let mesure = Object.values(res.data.body[0].measures).find(measure => {return measure.type.includes("temperature")});
+          let temperatureIndex = mesure.type.indexOf("temperature");
+          let temperature = Object.values(mesure.res)[0][temperatureIndex];
+          this.temperature = temperature;
         })
     }
   }
