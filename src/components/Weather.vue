@@ -15,7 +15,7 @@
       </a>
     </div>
     <!-- Card body -->
-    <div v-bind:id="collapseId" class="collapse show" role="tabpanel" v-bind:aria-labelledby="collapseId + 'Heading'"
+    <div v-bind:id="collapseId" class="collapse" role="tabpanel" v-bind:aria-labelledby="collapseId + 'Heading'"
       data-parent="#accordionEx">
       <div class="card-body">
         <table class="table">
@@ -73,6 +73,3 @@
     }
   }
 </script>
-<style>
-
-</style>

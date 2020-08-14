@@ -15,9 +15,6 @@
   </div>
 </template>
 
-
-</template>
-
 <script>
 import Weather from './Weather.vue'
 export default {
@@ -27,6 +24,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
