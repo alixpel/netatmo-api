@@ -1,4 +1,4 @@
-# netatmo-api - Alix Pelletier for NETATMO
+# netatmo-api
 
 ## Project setup
 ```
